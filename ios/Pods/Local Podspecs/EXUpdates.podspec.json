@@ -18,12 +18,8 @@
   "preserve_paths": "EXUpdates/**/*.{h,m}",
   "requires_arc": true,
   "dependencies": {
-    "UMCore": [
-
-    ],
-    "React-Core": [
-
-    ]
+    "UMCore": [],
+    "React-Core": []
   },
   "testspecs": [
     {

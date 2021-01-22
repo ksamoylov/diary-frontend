@@ -18,14 +18,8 @@
   "preserve_paths": "EXImageLoader/**/*.{h,m}",
   "requires_arc": true,
   "dependencies": {
-    "React-Core": [
-
-    ],
-    "UMCore": [
-
-    ],
-    "UMImageLoaderInterface": [
-
-    ]
+    "React-Core": [],
+    "UMCore": [],
+    "UMImageLoaderInterface": []
   }
 }

@@ -5,8 +5,6 @@
     "name": "ksamoylov/diary",
     "slug": "diary",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
+    "assetBundlePatterns": ["**/*"]
   }
 }

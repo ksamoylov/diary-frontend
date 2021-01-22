@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function Navbar() {
   return (
@@ -9,17 +9,15 @@ export default function Navbar() {
   );
 }
 
-const styles = StyleSheet.create(
-  {
-    container: {
-      backgroundColor: '#f4f4f4',
-      height: 70,
-      alignItems: 'center',
-      justifyContent: 'center',
-      paddingTop: 30,
-    },
-    text: {
-      fontSize: 16,
-    },
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#f4f4f4",
+    height: 70,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingTop: 30,
   },
-);
+  text: {
+    fontSize: 16,
+  },
+});
