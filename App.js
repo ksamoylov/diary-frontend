@@ -6,7 +6,7 @@ import Navbar from "./src/components/Navbar";
 export default function App() {
   return (
     <View style={styles.container}>
-      <Navbar/>
+      <Navbar   />
       <StatusBar style="auto" />
     </View>
   );
