@@ -1,6 +1,13 @@
 import React from "react";
-import { Text } from "react-native-web";
+import { Text, View } from "react-native";
+import { Month } from "./Month";
 
-export default function Calendar() {
-  return <Text>Calendar</Text>;
-}
+export const Calendar = () => {
+  const month = new Date().getMonth();
+
+  return (
+    <View>
+      <Month selectedMonth={month} />
+    </View>
+  );
+};
