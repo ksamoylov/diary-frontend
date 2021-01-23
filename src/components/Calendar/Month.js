@@ -1,6 +1,8 @@
 import React from "react";
 import { Text, View } from "react-native";
 
+const SUNDAY_NUMBER = 7;
+
 export const Month = ({ selectedMonth }) => {
   const dateWeekMap = createDateWeekMap(selectedMonth);
 
@@ -25,7 +27,7 @@ const createDateWeekMap = (selectedMonth) => {
 
     // 0 - это воскресенье, сделаем его 7 днем недели
     if (dayOfWeek === 0) {
-      dayOfWeek = 7;
+      dayOfWeek = SUNDAY_NUMBER;
     }
 
     dateWeekMap[dayOfWeek].push(dayOfMonth);
