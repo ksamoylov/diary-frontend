@@ -5,15 +5,17 @@ const SUNDAY_NUMBER = 7;
 
 export const Month = ({ selectedMonth }) => {
   const tableHead = ["ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ", "ВС"];
+  // @todo
   const tableData = createDateWeekMap(selectedMonth);
 
   return <View style={styles.container}>{renderHead(tableHead)}</View>;
 };
 
+// @todo
 const renderBody = () => {
   return (
     <View style={{ flex: 1, alignSelf: "stretch", flexDirection: "row" }}>
-      <View style={{ flex: 1, alignSelf: "stretch" }}></View>
+      <View style={{ flex: 1, alignSelf: "stretch" }} />
     </View>
   );
 };
