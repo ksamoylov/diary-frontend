@@ -11,7 +11,7 @@ export const Navbar = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#f4f4f4",
+    backgroundColor: "#323030",
     height: 70,
     alignItems: "center",
     justifyContent: "center",
@@ -19,5 +19,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
+    color: "#fff",
   },
 });

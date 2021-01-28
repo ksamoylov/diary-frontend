@@ -6,7 +6,7 @@ export const Calendar = () => {
   const month = new Date().getMonth();
 
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <Month selectedMonth={month} />
     </View>
   );

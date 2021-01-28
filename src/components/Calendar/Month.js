@@ -1,12 +1,35 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 
 const SUNDAY_NUMBER = 7;
 
 export const Month = ({ selectedMonth }) => {
-  const dateWeekMap = createDateWeekMap(selectedMonth);
+  const tableHead = ["ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ", "ВС"];
+  const tableData = createDateWeekMap(selectedMonth);
 
-  return <View></View>;
+  return <View style={styles.container}>{renderHead(tableHead)}</View>;
+};
+
+const renderBody = () => {
+  return (
+    <View style={{ flex: 1, alignSelf: "stretch", flexDirection: "row" }}>
+      <View style={{ flex: 1, alignSelf: "stretch" }}></View>
+    </View>
+  );
+};
+
+const renderHead = (tableHead) => {
+  return (
+    <View style={styles.head}>
+      {tableHead.map((el, index) => {
+        return (
+          <View style={styles.headCell} key={index}>
+            <Text style={{ color: "#fff" }}>{el}</Text>
+          </View>
+        );
+      })}
+    </View>
+  );
 };
 
 const createDateWeekMap = (selectedMonth) => {
@@ -36,3 +59,23 @@ const createDateWeekMap = (selectedMonth) => {
 
   return dateWeekMap;
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: 25,
+  },
+  head: {
+    flex: 1,
+    flexDirection: "row",
+  },
+  headCell: {
+    borderWidth: 0.2,
+    borderColor: "#f7f7f7",
+    backgroundColor: "#323030",
+    height: 35,
+    width: "14.3%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
