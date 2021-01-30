@@ -1,32 +1,28 @@
 import React from "react";
-import { Text, View, StyleSheet } from "react-native";
-
-const SUNDAY_NUMBER = 7;
+import { StyleSheet, Text, View } from "react-native";
+import { getRange } from "../../utils/common";
 
 export const Month = ({ selectedMonth }) => {
-  const tableHead = ["ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ", "ВС"];
-  // @todo
-  const tableData = createDateWeekMap(selectedMonth);
+  const tableHead = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const tableData = getWeeksInMonth(selectedMonth, 2021);
 
-  return <View style={styles.container}>{renderHead(tableHead)}</View>;
-};
-
-// @todo
-const renderBody = () => {
   return (
-    <View style={{ flex: 1, alignSelf: "stretch", flexDirection: "row" }}>
-      <View style={{ flex: 1, alignSelf: "stretch" }} />
+    <View style={styles.container}>
+      <Head tableHead={tableHead}>
+        <title>Table head</title>
+      </Head>
+      <Grid tableData={tableData} />
     </View>
   );
 };
 
-const renderHead = (tableHead) => {
+const Head = ({ tableHead }) => {
   return (
-    <View style={styles.head}>
+    <View style={styles.headContainer}>
       {tableHead.map((el, index) => {
         return (
           <View style={styles.headCell} key={index}>
-            <Text style={{ color: "#fff" }}>{el}</Text>
+            <Text style={styles.text}>{el}</Text>
           </View>
         );
       })}
@@ -34,50 +30,92 @@ const renderHead = (tableHead) => {
   );
 };
 
-const createDateWeekMap = (selectedMonth) => {
-  const date = new Date(2021, selectedMonth);
-  const dateWeekMap = {
-    1: [],
-    2: [],
-    3: [],
-    4: [],
-    5: [],
-    6: [],
-    7: [],
-  };
+const Grid = ({ tableData }) => {
+  const data = Object.values(tableData);
+
+  return (
+    <View style={styles.gridContainer}>
+      {data.map((column) => (
+        <Row column={column} />
+      ))}
+    </View>
+  );
+};
+
+const Row = ({ column }) => {
+  return (
+    <View style={styles.rowStyle}>
+      {column.map((data, index) => (
+        <Cell key={index} data={data} />
+      ))}
+    </View>
+  );
+};
+
+const Cell = ({ data }) => {
+  return (
+    <View style={styles.cellStyle}>
+      <Text style={styles.text}>{data}</Text>
+    </View>
+  );
+};
+
+const getWeeksInMonth = (month, year) => {
+  const weeks = [];
+  const firstDate = new Date(year, month, 1);
+  const lastDate = new Date(year, month + 1, 0);
+  const numDays = lastDate.getDate();
+
+  let start = 1;
+  let end = 7 - firstDate.getDay();
 
   do {
-    let dayOfWeek = date.getDay();
-    let dayOfMonth = date.getDate();
+    weeks.push(getRange(start, end));
+    start = end + 1;
+    end = end + 7;
+    if (end > numDays) end = numDays;
+  } while (start <= numDays);
 
-    // 0 - это воскресенье, сделаем его 7 днем недели
-    if (dayOfWeek === 0) {
-      dayOfWeek = SUNDAY_NUMBER;
-    }
-
-    dateWeekMap[dayOfWeek].push(dayOfMonth);
-    date.setDate(date.getDate() + 1);
-  } while (date.getMonth() === selectedMonth);
-
-  return dateWeekMap;
+  return weeks;
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 25,
+    alignItems: "center",
+    justifyContent: "center",
   },
-  head: {
+  headContainer: {
     flex: 1,
     flexDirection: "row",
   },
   headCell: {
-    borderWidth: 0.2,
-    borderColor: "#f7f7f7",
-    backgroundColor: "#323030",
     height: 35,
-    width: "14.3%",
+    width: 54,
+    marginRight: 1,
+    marginLeft: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  gridContainer: {
+    flex: 1,
+    marginTop: 0,
+    marginBottom: 0,
+  },
+  rowStyle: {
+    flexDirection: "row",
+    flex: 1,
+  },
+  cellStyle: {
+    height: 50,
+    width: 54,
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: 1,
+    marginLeft: 1,
+  },
+  text: {
+    color: "#fff",
   },
 });
