@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { getRange } from "../../utils/common";
+import { Separator } from "./Separator";
 
 export const Month = ({ selectedMonth }) => {
   const tableHead = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -11,6 +12,7 @@ export const Month = ({ selectedMonth }) => {
       <Head tableHead={tableHead}>
         <title>Table head</title>
       </Head>
+      <Separator />
       <Grid tableData={tableData} />
     </View>
   );
@@ -35,8 +37,8 @@ const Grid = ({ tableData }) => {
 
   return (
     <View style={styles.gridContainer}>
-      {data.map((column) => (
-        <Row column={column} />
+      {data.map((column, index) => (
+        <Row key={index} column={column} />
       ))}
     </View>
   );
@@ -87,12 +89,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   headContainer: {
-    flex: 1,
     flexDirection: "row",
+    marginBottom: 10,
   },
   headCell: {
     height: 35,
-    width: 54,
+    width: 55,
     marginRight: 1,
     marginLeft: 1,
     justifyContent: "center",
@@ -100,7 +102,6 @@ const styles = StyleSheet.create({
   },
   gridContainer: {
     flex: 1,
-    marginTop: 0,
     marginBottom: 0,
   },
   rowStyle: {
@@ -108,8 +109,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   cellStyle: {
-    height: 50,
-    width: 54,
+    height: 100,
+    width: 55,
     justifyContent: "center",
     alignItems: "center",
     marginRight: 1,
@@ -117,5 +118,6 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#fff",
+    fontSize: 18,
   },
 });
